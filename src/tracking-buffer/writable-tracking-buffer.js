@@ -18,7 +18,7 @@ module.exports = class WritableTrackingBuffer {
     this.doubleSizeGrowth = doubleSizeGrowth;
     this.doubleSizeGrowth || (this.doubleSizeGrowth = false);
     this.encoding || (this.encoding = 'ucs2');
-    this.buffer = new Buffer(this.initialSize);
+    this.buffer = new Buffer(this.initialSize).fill(0);
     this.position = 0;
   }
 
@@ -55,7 +55,7 @@ module.exports = class WritableTrackingBuffer {
     } else {
       this.compositeBuffer = buffer;
     }
-    this.buffer = (size === 0) ? ZERO_LENGTH_BUFFER : new Buffer(size);
+    this.buffer = (size === 0) ? ZERO_LENGTH_BUFFER : new Buffer(size).fill(0);
     return this.position = 0;
   }
 
